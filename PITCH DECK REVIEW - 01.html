@@ -1,0 +1,2375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pitchsap · Pitch Deck Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f6fd;
+            color: #1a1530;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding: 0 24px;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(180, 130, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(195, 180, 255, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.06), 0 6px 20px rgba(0, 0, 0, 0.03);
+            padding: 24px 28px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 30px 80px rgba(124, 58, 237, 0.10);
+            border-color: rgba(168, 85, 247, 0.15);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #1a1530;
+        }
+        h1 {
+            font-size: 2.2rem;
+            line-height: 1.1;
+        }
+        h2 {
+            font-size: 1.4rem;
+        }
+        h3 {
+            font-size: 1.1rem;
+        }
+        h4 {
+            font-size: 0.95rem;
+        }
+        .text-muted {
+            color: #6b6680;
+        }
+        .text-soft {
+            color: #9a95ae;
+        }
+        .text-sm {
+            font-size: 0.85rem;
+        }
+        .text-xs {
+            font-size: 0.75rem;
+        }
+        .text-success {
+            color: #10b981;
+        }
+        .text-warning {
+            color: #f59e0b;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #7c3aed, #a855f7);
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.20);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(124, 58, 237, 0.30);
+            filter: brightness(1.05);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            color: #7c3aed;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover {
+            background: #f3e8ff;
+            border-color: #a855f7;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: none;
+            color: #7c3aed;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-ghost:hover {
+            background: rgba(124, 58, 237, 0.06);
+        }
+
+        .badge {
+            background: #f3e8ff;
+            color: #7c3aed;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            display: inline-block;
+        }
+        .badge-outline {
+            background: transparent;
+            border: 1px solid rgba(180, 170, 220, 0.3);
+            color: #6b6680;
+        }
+        .badge-success {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        .badge-gold {
+            background: rgba(212, 175, 55, 0.08);
+            color: #b8950a;
+            border: 1px solid rgba(212, 175, 55, 0.06);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 24px;
+            margin: 16px 0 24px;
+            background: rgba(255, 255, 255, 0.70);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-radius: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.06);
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #1a1530;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo span {
+            color: #7c3aed;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-weight: 500;
+            color: #6b6680;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+            font-size: 0.9rem;
+        }
+        .nav-links a:hover {
+            color: #7c3aed;
+        }
+        .nav-links a.active {
+            color: #7c3aed;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #c4b5fd, #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .page-header h1 {
+            font-size: 2rem;
+        }
+        .page-header .subtitle {
+            color: #6b6680;
+            font-size: 0.95rem;
+        }
+        .page-header .status-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.06);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.04);
+        }
+        .page-header .status-chip .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10b981;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .upload-card {
+            padding: 36px 32px;
+            border: 2px dashed rgba(180, 170, 220, 0.2);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.3);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .upload-card:hover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.02);
+        }
+        .upload-card.dragover {
+            border-color: #7c3aed;
+            background: rgba(124, 58, 237, 0.05);
+            transform: scale(1.01);
+        }
+        .upload-card .upload-icon {
+            font-size: 3.2rem;
+            margin-bottom: 12px;
+            opacity: 0.6;
+        }
+        .upload-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+        .upload-card .upload-text {
+            color: #6b6680;
+            font-size: 0.9rem;
+        }
+        .upload-card .upload-text strong {
+            color: #7c3aed;
+            cursor: pointer;
+        }
+        .upload-card .upload-formats {
+            font-size: 0.7rem;
+            color: #9a95ae;
+            margin-top: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        .upload-card .upload-formats span {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 2px 12px;
+            border-radius: 40px;
+        }
+        .upload-card .file-preview {
+            display: none;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            margin: 12px 0;
+            text-align: left;
+        }
+        .upload-card .file-preview.show {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .upload-card .file-preview .file-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .upload-card .file-preview .file-name {
+            font-weight: 600;
+            color: #1a1530;
+            font-size: 0.9rem;
+        }
+        .upload-card .file-preview .file-size {
+            font-size: 0.75rem;
+            color: #6b6680;
+        }
+        .upload-card .file-preview .remove-file {
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 0.8rem;
+            background: none;
+            border: none;
+            padding: 4px 8px;
+        }
+        .upload-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .workflow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            position: relative;
+        }
+        .workflow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            right: 8%;
+            height: 2px;
+            background: rgba(180, 170, 220, 0.1);
+            transform: translateY(-50%);
+        }
+        .workflow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.4s ease;
+        }
+        .workflow-step.active {
+            opacity: 1;
+        }
+        .workflow-step.completed {
+            opacity: 0.8;
+        }
+        .workflow-step .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(180, 170, 220, 0.1);
+            border: 2px solid rgba(180, 170, 220, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+        }
+        .workflow-step.active .step-icon {
+            background: #7c3aed;
+            border-color: #7c3aed;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
+        }
+        .workflow-step.completed .step-icon {
+            background: #10b981;
+            border-color: #10b981;
+            color: #fff;
+        }
+        .workflow-step .step-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #6b6680;
+            text-align: center;
+        }
+        .workflow-step.active .step-label {
+            color: #1a1530;
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 4px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 20px;
+            padding: 24px 24px;
+            border: 1px solid rgba(180, 170, 220, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.06);
+        }
+        .review-card.ai {
+            border-color: rgba(124, 58, 237, 0.12);
+        }
+        .review-card.ai:hover {
+            border-color: #7c3aed;
+        }
+        .review-card.expert {
+            border-color: rgba(212, 175, 55, 0.08);
+        }
+        .review-card.expert:hover {
+            border-color: #d4af37;
+        }
+        .review-card .card-badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 2px 12px;
+            border-radius: 40px;
+            margin-bottom: 6px;
+        }
+        .review-card.ai .card-badge {
+            background: rgba(124, 58, 237, 0.06);
+            color: #7c3aed;
+        }
+        .review-card.expert .card-badge {
+            background: rgba(212, 175, 55, 0.06);
+            color: #b8950a;
+        }
+        .review-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+        }
+        .review-card .card-desc {
+            font-size: 0.85rem;
+            color: #6b6680;
+            margin-bottom: 10px;
+        }
+        .review-card .card-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 8px;
+            font-size: 0.78rem;
+            color: #6b6680;
+            margin-bottom: 14px;
+        }
+        .review-card .card-features span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .review-card .card-time {
+            font-size: 0.75rem;
+            color: #9a95ae;
+            margin-bottom: 12px;
+        }
+        .review-card .btn-primary {
+            width: 100%;
+            justify-content: center;
+            padding: 10px;
+            font-size: 0.85rem;
+        }
+        .review-card.expert .btn-primary {
+            background: linear-gradient(90deg, #b8950a, #d4af37);
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.15);
+        }
+        .review-card.expert .btn-primary:hover {
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.25);
+        }
+
+        .review-card .gold-accent {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.03), transparent 70%);
+            pointer-events: none;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 18px 20px;
+            border: 1px solid rgba(180, 170, 220, 0.04);
+        }
+        .sidebar-card .sidebar-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #6b6680;
+            margin-bottom: 8px;
+        }
+        .sidebar-card .sidebar-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(180, 170, 220, 0.04);
+        }
+        .sidebar-card .sidebar-item:last-child {
+            border-bottom: none;
+        }
+        .sidebar-card .sidebar-item .label {
+            color: #6b6680;
+        }
+        .sidebar-card .sidebar-item .value {
+            font-weight: 500;
+            color: #1a1530;
+        }
+        .sidebar-card .sidebar-item .value.purple {
+            color: #7c3aed;
+        }
+        .sidebar-card .sidebar-item .value.gold {
+            color: #b8950a;
+        }
+
+        /* ---- Status card (shared style) ---- */
+        .status-card {
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            padding: 18px 20px;
+            border: 1px solid rgba(180, 170, 220, 0.04);
+        }
+        .status-card .status-title {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #6b6680;
+            margin-bottom: 8px;
+        }
+        .status-card .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 0;
+            font-size: 0.85rem;
+            color: #6b6680;
+        }
+        .status-card .status-item .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d2cedf;
+            flex-shrink: 0;
+            transition: background 0.3s;
+        }
+        .status-card .status-item .dot.completed {
+            background: #10b981;
+        }
+        .status-card .status-item .dot.active {
+            background: #7c3aed;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        .status-card .status-item .label {
+            color: #6b6680;
+            transition: color 0.3s;
+        }
+        .status-card .status-item .label.active {
+            color: #1a1530;
+            font-weight: 500;
+        }
+        .status-card .status-item .label.completed {
+            color: #10b981;
+        }
+        .status-card .status-footer {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(180, 170, 220, 0.04);
+            font-size: 0.75rem;
+            color: #6b6680;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.6;
+            }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 10, 40, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(32px);
+            border-radius: 40px;
+            padding: 36px 40px;
+            max-width: 560px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.15);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-box .modal-close {
+            float: right;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            color: #6b6680;
+            cursor: pointer;
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        .modal-box .modal-close:hover {
+            color: #1a1530;
+            transform: rotate(90deg);
+        }
+        .modal-box h3 {
+            margin-bottom: 4px;
+        }
+        .modal-box p {
+            color: #6b6680;
+            margin-bottom: 16px;
+        }
+        .modal-box .modal-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .modal-box .form-control {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(180, 170, 220, 0.15);
+            background: rgba(255, 255, 255, 0.3);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #1a1530;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .modal-box .form-control:focus {
+            border-color: #7c3aed;
+        }
+        .modal-box .form-control option {
+            color: #1a1530;
+        }
+
+        /* Progress bar in modal */
+        .modal-progress .step-text {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 12px;
+        }
+        .modal-progress .step-sub {
+            color: #6b6680;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        .modal-progress .bar {
+            width: 100%;
+            height: 6px;
+            background: rgba(180, 170, 220, 0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 6px;
+        }
+        .modal-progress .bar .fill {
+            height: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #7c3aed, #a855f7);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .consultant-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 12px 0;
+        }
+        .consultant-item {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 16px 18px;
+            border: 1px solid rgba(180, 170, 220, 0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .consultant-item:hover {
+            border-color: #7c3aed;
+            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.04);
+        }
+        .consultant-item .consultant-header {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .consultant-item .consultant-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #c4b5fd, #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .consultant-item .consultant-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .consultant-item .consultant-role {
+            font-size: 0.75rem;
+            color: #6b6680;
+        }
+        .consultant-item .consultant-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 10px;
+            font-size: 0.7rem;
+            color: #6b6680;
+            margin: 4px 0;
+        }
+        .consultant-item .consultant-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 4px 0;
+        }
+        .consultant-item .consultant-tags .tag {
+            font-size: 0.6rem;
+            padding: 1px 10px;
+            border-radius: 40px;
+            background: rgba(180, 170, 220, 0.04);
+            color: #6b6680;
+            border: 1px solid rgba(180, 170, 220, 0.04);
+        }
+        .consultant-item .consultant-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(180, 170, 220, 0.04);
+        }
+        .consultant-item .consultant-footer .price {
+            font-weight: 700;
+            color: #7c3aed;
+            font-size: 0.95rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 14px 32px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 60px rgba(124, 58, 237, 0.15);
+            font-weight: 500;
+            color: #1a1530;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+            margin: 16px 0;
+        }
+        .summary-item {
+            text-align: center;
+            padding: 16px 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            border: 1px solid rgba(180, 170, 220, 0.06);
+        }
+        .summary-item .score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #7c3aed;
+        }
+        .summary-item .label {
+            font-size: 0.75rem;
+            color: #9a95ae;
+            font-weight: 500;
+        }
+        .summary-item .score-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(180, 170, 220, 0.15);
+            border-radius: 4px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .summary-item .score-bar .fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #7c3aed, #a855f7);
+            transition: width 0.8s ease;
+        }
+
+        .ai-output-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .ai-output-item {
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(180, 170, 220, 0.06);
+        }
+        .ai-output-item .label {
+            font-size: 0.7rem;
+            color: #9a95ae;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+        .ai-output-item .value {
+            font-size: 0.9rem;
+            color: #1a1530;
+            margin-top: 2px;
+        }
+
+        .session-details {
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            padding: 16px 20px;
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            margin-top: 12px;
+        }
+        .session-details .session-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 0.85rem;
+        }
+        .session-details .session-row .label {
+            color: #6b6680;
+        }
+        .session-details .session-row .value {
+            font-weight: 500;
+            color: #1a1530;
+        }
+        .session-details .session-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(180, 170, 220, 0.06);
+        }
+        .back-btn-row .back-btn {
+            background: transparent;
+            border: none;
+            color: #7c3aed;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 40px;
+            transition: background 0.2s;
+        }
+        .back-btn-row .back-btn:hover {
+            background: rgba(124, 58, 237, 0.06);
+        }
+
+        .section-hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 16px;
+            }
+            .review-cards {
+                grid-template-columns: 1fr;
+            }
+            .consultant-grid {
+                grid-template-columns: 1fr;
+            }
+            .workflow {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center;
+            }
+            .workflow::before {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 0 16px;
+            }
+            .navbar {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 10px 16px;
+                border-radius: 40px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .glass-card {
+                padding: 18px 16px;
+            }
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+            .upload-card {
+                padding: 24px 16px;
+            }
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+            .review-card .card-features {
+                grid-template-columns: 1fr;
+            }
+            .modal-box {
+                padding: 24px 20px;
+            }
+            .consultant-grid {
+                grid-template-columns: 1fr;
+            }
+            .ai-output-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .upload-actions .btn-primary,
+            .upload-actions .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            .upload-card .file-preview.show {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .workflow-step .step-label {
+                font-size: 0.6rem;
+            }
+            .workflow-step .step-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            .review-card .card-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(180, 170, 220, 0.02);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== NAV ===== -->
+        <nav class="navbar">
+            <div class="nav-logo">Pitch<span>sap</span></div>
+            <div class="nav-links">
+                <a href="#">Dashboard</a>
+                <a href="#" class="active">Pitch Deck Review</a>
+                <a href="#">Opportunity Radar</a>
+                <a href="#">Workspace</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-avatar">JD</div>
+            </div>
+        </nav>
+
+        <!-- ===== HEADER ===== -->
+        <div class="page-header">
+            <div>
+                <h1>Pitch Deck Review</h1>
+                <p class="subtitle">Upload your pitch deck and receive AI analysis or request a professional consultant review.</p>
+            </div>
+            <div class="status-chip">
+                <span class="dot"></span>
+                AI Powered
+            </div>
+        </div>
+
+        <!-- ===== MAIN ===== -->
+        <div class="main-grid">
+
+            <!-- ===== CONTENT ===== -->
+            <div class="content-area">
+
+                <!-- Upload Card -->
+                <div class="upload-card" id="uploadCard">
+                    <div class="upload-icon">📄</div>
+                    <h3>Upload Your Pitch Deck</h3>
+                    <p class="upload-text">Drag &amp; Drop your PDF, PPT or PPTX or <strong>browse</strong></p>
+                    <input type="file" id="fileInput" accept=".pdf,.ppt,.pptx" style="display:none;" />
+
+                    <div class="file-preview" id="filePreview">
+                        <div class="file-info">
+                            <span style="font-size:1.2rem;">📎</span>
+                            <div>
+                                <div class="file-name" id="fileName">presentation.pdf</div>
+                                <div class="file-size" id="fileSize">2.4 MB</div>
+                            </div>
+                        </div>
+                        <button class="remove-file" id="removeFile">✕ Remove</button>
+                    </div>
+
+                    <div class="upload-formats">
+                        <span>PDF</span>
+                        <span>PPT</span>
+                        <span>PPTX</span>
+                        <span>Max 50MB</span>
+                    </div>
+
+                    <div class="upload-actions">
+                        <button class="btn-primary" id="uploadBtn">Analyze Pitch</button>
+                        <button class="btn-secondary" id="browseBtn">Browse Files</button>
+                    </div>
+                </div>
+
+                <!-- Workflow -->
+                <div class="glass-card" style="padding:16px 20px;">
+                    <div class="workflow" id="workflow">
+                        <div class="workflow-step active" data-step="1">
+                            <div class="step-icon">📤</div>
+                            <div class="step-label">Upload</div>
+                        </div>
+                        <div class="workflow-step" data-step="2">
+                            <div class="step-icon">🤖</div>
+                            <div class="step-label">AI Analysis</div>
+                        </div>
+                        <div class="workflow-step" data-step="3">
+                            <div class="step-icon">📋</div>
+                            <div class="step-label">Choose Review</div>
+                        </div>
+                        <div class="workflow-step" data-step="4">
+                            <div class="step-icon">📊</div>
+                            <div class="step-label">Receive Insights</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION: REVIEW CARDS ===== -->
+                <div id="sectionReviewCards">
+                    <div class="review-cards" id="reviewCards">
+                        <!-- AI Review -->
+                        <div class="review-card ai" id="aiReviewCard">
+                            <div class="card-badge">AI Powered</div>
+                            <h3>AI Review</h3>
+                            <p class="card-desc">Instant AI-powered startup evaluation</p>
+                            <div class="card-time">⚡ 2-3 Minutes</div>
+                            <div class="card-features">
+                                <span>✓ Overall Score</span>
+                                <span>✓ SWOT Analysis</span>
+                                <span>✓ Market Analysis</span>
+                                <span>✓ Business Model</span>
+                                <span>✓ Financial Analysis</span>
+                                <span>✓ Investor Questions</span>
+                            </div>
+                            <button class="btn-primary" id="startAIReview">Start AI Review</button>
+                        </div>
+
+                        <!-- Expert Review -->
+                        <div class="review-card expert" id="expertReviewCard">
+                            <div class="gold-accent"></div>
+                            <div class="card-badge">Premium</div>
+                            <h3>Expert Review</h3>
+                            <p class="card-desc">Reviewed by experienced startup consultants</p>
+                            <div class="card-time">🕒 24-48 Hours</div>
+                            <div class="card-features">
+                                <span>✓ Human Evaluation</span>
+                                <span>✓ Startup Strategy</span>
+                                <span>✓ Fundraising Advice</span>
+                                <span>✓ Market Validation</span>
+                                <span>✓ Personalized Feedback</span>
+                                <span>✓ Live Session</span>
+                            </div>
+                            <button class="btn-primary" id="startExpertReview">Request Expert Review</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION: AI REPORT ===== -->
+                <div id="sectionAIReport" class="section-hidden">
+                    <div class="glass-card">
+                        <div class="back-btn-row">
+                            <button class="back-btn" id="backFromReport">← Back to Review Options</button>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                            <div>
+                                <h3>AI Pitch Deck Analysis</h3>
+                                <p class="text-soft text-sm">Comprehensive AI evaluation with detailed scores and improvement recommendations.</p>
+                            </div>
+                            <span class="badge badge-success">Analysis Complete</span>
+                        </div>
+
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <div class="score" id="aiOverall">86</div>
+                                <div class="label">Overall Score</div>
+                                <div class="score-bar"><div class="fill" style="width:86%"></div></div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="score" id="aiStorytelling">82</div>
+                                <div class="label">Storytelling</div>
+                                <div class="score-bar"><div class="fill" style="width:82%"></div></div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="score" id="aiMarketFit">79</div>
+                                <div class="label">Market Fit</div>
+                                <div class="score-bar"><div class="fill" style="width:79%"></div></div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="score" id="aiBusinessModel">74</div>
+                                <div class="label">Business Model</div>
+                                <div class="score-bar"><div class="fill" style="width:74%"></div></div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="score" id="aiDesign">88</div>
+                                <div class="label">Design Quality</div>
+                                <div class="score-bar"><div class="fill" style="width:88%"></div></div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="score" id="aiFundraising">81</div>
+                                <div class="label">Fundraising Readiness</div>
+                                <div class="score-bar"><div class="fill" style="width:81%"></div></div>
+                            </div>
+                        </div>
+
+                        <h4 style="margin-bottom:8px; margin-top:16px;">Detailed Analysis</h4>
+                        <div class="ai-output-grid">
+                            <div class="ai-output-item">
+                                <div class="label">Strengths</div>
+                                <div class="value">Strong team background, clear market opportunity, solid product vision</div>
+                            </div>
+                            <div class="ai-output-item">
+                                <div class="label">Weak Areas</div>
+                                <div class="value">TAM calculation needs refinement, go-to-market strategy lacks detail</div>
+                            </div>
+                            <div class="ai-output-item">
+                                <div class="label">Investor Concerns</div>
+                                <div class="value">Customer acquisition cost unclear, competitive positioning weak</div>
+                            </div>
+                            <div class="ai-output-item">
+                                <div class="label">Missing Slides</div>
+                                <div class="value">Competition slide lacks depth, financials need more detail</div>
+                            </div>
+                            <div class="ai-output-item">
+                                <div class="label">Common Investor Questions</div>
+                                <div class="value">"How will you acquire customers?" "What is your unit economics?"</div>
+                            </div>
+                            <div class="ai-output-item">
+                                <div class="label">Critical Risks</div>
+                                <div class="value">Market competition, regulatory compliance, customer adoption</div>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+                            <button class="btn-secondary" id="improveWithAI">⚡ Improve with AI</button>
+                            <button class="btn-secondary" id="bookExpertFromAI">📅 Book Expert Session</button>
+                            <button class="btn-ghost" id="downloadReportBtn">📥 Download Report</button>
+                        </div>
+
+                        <!-- ===== BOOKED SESSION DETAILS (AI Review) ===== -->
+                        <div id="bookedSessionDetailsAI" style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid rgba(180,170,220,0.08);">
+                            <h4 style="margin-bottom:8px;">📅 Booked Expert Session</h4>
+                            <div class="session-details">
+                                <div class="session-row">
+                                    <span class="label">Consultant</span>
+                                    <span class="value" id="sessionConsultantAI">—</span>
+                                </div>
+                                <div class="session-row">
+                                    <span class="label">Date</span>
+                                    <span class="value" id="sessionDateAI">—</span>
+                                </div>
+                                <div class="session-row">
+                                    <span class="label">Time</span>
+                                    <span class="value" id="sessionTimeAI">—</span>
+                                </div>
+                                <div class="session-row">
+                                    <span class="label">Focus</span>
+                                    <span class="value" id="sessionFocusAI">—</span>
+                                </div>
+                                <div class="session-actions">
+                                    <button class="btn-primary" id="joinSessionBtnAI" style="padding:8px 24px; font-size:0.85rem;">🎥 Join Session</button>
+                                    <button class="btn-secondary" id="rescheduleSessionBtnAI" style="padding:8px 24px; font-size:0.85rem;">📅 Reschedule</button>
+                                    <button class="btn-ghost" id="cancelSessionBtnAI" style="padding:8px 24px; font-size:0.85rem; color:#ef4444;">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION: CONSULTANT SELECTION ===== -->
+                <div id="sectionConsultants" class="section-hidden">
+                    <div class="glass-card">
+                        <div class="back-btn-row">
+                            <button class="back-btn" id="backFromConsultants">← Back to Review Options</button>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
+                            <h3>Select Your Expert Reviewer</h3>
+                            <span class="badge badge-gold">Premium</span>
+                        </div>
+                        <p class="text-soft text-sm" style="margin-bottom:12px;">Choose from our network of experienced investors and founders.</p>
+
+                        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+                            <select class="form-control" style="padding:6px 12px; border-radius:40px; border:1px solid rgba(180,170,220,0.15); font-size:0.8rem; background:rgba(255,255,255,0.3); width:auto;">
+                                <option>All Industries</option>
+                                <option>FinTech</option>
+                                <option>HealthTech</option>
+                                <option>AI</option>
+                                <option>SaaS</option>
+                                <option>EdTech</option>
+                            </select>
+                            <select class="form-control" style="padding:6px 12px; border-radius:40px; border:1px solid rgba(180,170,220,0.15); font-size:0.8rem; background:rgba(255,255,255,0.3); width:auto;">
+                                <option>Highest Rated</option>
+                                <option>Fastest</option>
+                                <option>Most Reviews</option>
+                                <option>Cheapest</option>
+                            </select>
+                        </div>
+
+                        <div class="consultant-grid" id="consultantGrid">
+                            <div class="consultant-item" data-id="1">
+                                <div class="consultant-header">
+                                    <div class="consultant-avatar">AK</div>
+                                    <div>
+                                        <div class="consultant-name">Amanda Kaur</div>
+                                        <div class="consultant-role">VC Partner · Sequoia Capital</div>
+                                    </div>
+                                </div>
+                                <div class="consultant-meta">
+                                    <span>⭐ 4.9 (142)</span>
+                                    <span>87 completed</span>
+                                    <span>48hr</span>
+                                </div>
+                                <div class="consultant-tags">
+                                    <span class="tag">SaaS</span>
+                                    <span class="tag">AI</span>
+                                    <span class="tag">Fintech</span>
+                                </div>
+                                <div class="consultant-footer">
+                                    <span class="price">$499</span>
+                                    <button class="btn-primary select-consultant" style="padding:6px 18px; font-size:0.75rem;" data-id="1">Select</button>
+                                </div>
+                            </div>
+                            <div class="consultant-item" data-id="2">
+                                <div class="consultant-header">
+                                    <div class="consultant-avatar">MR</div>
+                                    <div>
+                                        <div class="consultant-name">Michael Rodriguez</div>
+                                        <div class="consultant-role">Founder · Ex-Y Combinator</div>
+                                    </div>
+                                </div>
+                                <div class="consultant-meta">
+                                    <span>⭐ 4.8 (98)</span>
+                                    <span>63 completed</span>
+                                    <span>36hr</span>
+                                </div>
+                                <div class="consultant-tags">
+                                    <span class="tag">Consumer</span>
+                                    <span class="tag">Marketplace</span>
+                                    <span class="tag">Retail</span>
+                                </div>
+                                <div class="consultant-footer">
+                                    <span class="price">$399</span>
+                                    <button class="btn-primary select-consultant" style="padding:6px 18px; font-size:0.75rem;" data-id="2">Select</button>
+                                </div>
+                            </div>
+                            <div class="consultant-item" data-id="3">
+                                <div class="consultant-header">
+                                    <div class="consultant-avatar">SW</div>
+                                    <div>
+                                        <div class="consultant-name">Sarah Williams</div>
+                                        <div class="consultant-role">Angel Investor · 20+ Exits</div>
+                                    </div>
+                                </div>
+                                <div class="consultant-meta">
+                                    <span>⭐ 5.0 (67)</span>
+                                    <span>52 completed</span>
+                                    <span>72hr</span>
+                                </div>
+                                <div class="consultant-tags">
+                                    <span class="tag">DeepTech</span>
+                                    <span class="tag">Hardware</span>
+                                    <span class="tag">Climate</span>
+                                </div>
+                                <div class="consultant-footer">
+                                    <span class="price">$599</span>
+                                    <button class="btn-primary select-consultant" style="padding:6px 18px; font-size:0.75rem;" data-id="3">Select</button>
+                                </div>
+                            </div>
+                            <div class="consultant-item" data-id="4">
+                                <div class="consultant-header">
+                                    <div class="consultant-avatar">DC</div>
+                                    <div>
+                                        <div class="consultant-name">David Chen</div>
+                                        <div class="consultant-role">GP · 500 Global</div>
+                                    </div>
+                                </div>
+                                <div class="consultant-meta">
+                                    <span>⭐ 4.7 (156)</span>
+                                    <span>112 completed</span>
+                                    <span>24hr</span>
+                                </div>
+                                <div class="consultant-tags">
+                                    <span class="tag">B2B</span>
+                                    <span class="tag">Enterprise</span>
+                                    <span class="tag">AI</span>
+                                </div>
+                                <div class="consultant-footer">
+                                    <span class="price">$449</span>
+                                    <button class="btn-primary select-consultant" style="padding:6px 18px; font-size:0.75rem;" data-id="4">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION: EXPERT REVIEW STATUS ===== -->
+                <div id="sectionExpertStatus" class="section-hidden">
+                    <div class="glass-card">
+                        <div class="back-btn-row">
+                            <button class="back-btn" id="backFromExpertStatus">← Back to Consultants</button>
+                        </div>
+
+                        <h3 style="margin-bottom:4px;">Expert Review Status</h3>
+                        <p class="text-soft text-sm" style="margin-bottom:16px;">Tracking your expert review request</p>
+
+                        <div class="workflow" id="statusWorkflow">
+                            <div class="workflow-step active" data-status="1">
+                                <div class="step-icon">✓</div>
+                                <div class="step-label">Request Sent</div>
+                            </div>
+                            <div class="workflow-step" data-status="2">
+                                <div class="step-icon">👤</div>
+                                <div class="step-label">Consultant Assigned</div>
+                            </div>
+                            <div class="workflow-step" data-status="3">
+                                <div class="step-icon">📋</div>
+                                <div class="step-label">Reviewing</div>
+                            </div>
+                            <div class="workflow-step" data-status="4">
+                                <div class="step-icon">📄</div>
+                                <div class="step-label">Report Delivered</div>
+                            </div>
+                        </div>
+
+                        <div style="text-align:center; margin-top:16px;">
+                            <div id="expertConsultantInfo" style="background:rgba(255,255,255,0.02); border-radius:12px; padding:12px; margin-bottom:12px; display:none;">
+                                <p style="font-size:0.85rem; color:#6b6680;">Consultant</p>
+                                <p style="font-weight:600; font-size:1rem;" id="expertConsultantName">—</p>
+                            </div>
+                            <p class="text-soft text-sm" id="statusMessage">Select a consultant to begin your expert review.</p>
+                            <button class="btn-primary" id="viewExpertReport" style="display:none; margin-top:8px;">View Expert Review</button>
+                            <button class="btn-secondary" id="bookSessionFromStatus" style="display:none; margin-top:8px;">📅 Book Improvement Session</button>
+                        </div>
+
+                        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+                            <button class="btn-secondary" id="bookSessionFromStatusBtn" style="flex:1; display:none;">📅 Book Session</button>
+                        </div>
+
+                        <!-- ===== BOOKED SESSION DETAILS (Expert Review) ===== -->
+                        <div id="bookedSessionDetailsExpert" style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid rgba(180,170,220,0.08);">
+                            <h4 style="margin-bottom:8px;">📅 Booked Expert Session</h4>
+                            <div class="session-details">
+                                <div class="session-row">
+                                    <span class="label">Consultant</span>
+                                    <span class="value" id="sessionConsultantExpert">—</span>
+                                </div>
+                                <div class="session-row">
+                                    <span class="label">Date</span>
+                                    <span class="value" id="sessionDateExpert">—</span>
+                                </div>
+                                <div class="session-row">
+                                    <span class="label">Time</span>
+                                    <span class="value" id="sessionTimeExpert">—</span>
+                                </div>
+                                <div class="session-row">
+                                    <span class="label">Focus</span>
+                                    <span class="value" id="sessionFocusExpert">—</span>
+                                </div>
+                                <div class="session-actions">
+                                    <button class="btn-primary" id="joinSessionBtnExpert" style="padding:8px 24px; font-size:0.85rem;">🎥 Join Session</button>
+                                    <button class="btn-secondary" id="rescheduleSessionBtnExpert" style="padding:8px 24px; font-size:0.85rem;">📅 Reschedule</button>
+                                    <button class="btn-ghost" id="cancelSessionBtnExpert" style="padding:8px 24px; font-size:0.85rem; color:#ef4444;">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== SIDEBAR ===== -->
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Recent Reviews</div>
+                    <div class="sidebar-item">
+                        <span class="label">Last Uploaded</span>
+                        <span class="value">pitch_deck_v3.pdf</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="label">AI Analysis</span>
+                        <span class="value purple">86%</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="label">Status</span>
+                        <span class="value" style="color:#10b981;">Complete</span>
+                    </div>
+                </div>
+
+                <!-- ===== EXPERT REVIEW STATUS (sidebar) ===== -->
+                <div class="status-card" id="sidebarExpertStatus">
+                    <div class="status-title">Expert Review Status</div>
+                    <div id="sidebarExpertContent">
+                        <div class="status-item">
+                            <span class="dot" id="sidebarExpertDot1"></span>
+                            <span class="label" id="sidebarExpertLabel1">Request Sent</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="dot" id="sidebarExpertDot2"></span>
+                            <span class="label" id="sidebarExpertLabel2">Consultant Assigned</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="dot" id="sidebarExpertDot3"></span>
+                            <span class="label" id="sidebarExpertLabel3">Reviewing</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="dot" id="sidebarExpertDot4"></span>
+                            <span class="label" id="sidebarExpertLabel4">Report Delivered</span>
+                        </div>
+                        <div class="status-footer" id="sidebarExpertInfo">No active expert review</div>
+                    </div>
+                </div>
+
+                <!-- ===== AI REVIEW STATUS (sidebar) ===== -->
+                <div class="status-card" id="sidebarAIStatus">
+                    <div class="status-title">AI Review Status</div>
+                    <div id="sidebarAIContent">
+                        <div class="status-item">
+                            <span class="dot" id="sidebarAIDot1"></span>
+                            <span class="label" id="sidebarAILabel1">Queued</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="dot" id="sidebarAIDot2"></span>
+                            <span class="label" id="sidebarAILabel2">Processing</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="dot" id="sidebarAIDot3"></span>
+                            <span class="label" id="sidebarAILabel3">Analysis Complete</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="dot" id="sidebarAIDot4"></span>
+                            <span class="label" id="sidebarAILabel4">Report Ready</span>
+                        </div>
+                        <div class="status-footer" id="sidebarAIInfo">Waiting for file upload</div>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Credits</div>
+                    <div class="sidebar-item">
+                        <span class="label">AI Reviews</span>
+                        <span class="value purple">3 remaining</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="label">Expert Reviews</span>
+                        <span class="value gold">1 remaining</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Availability</div>
+                    <div class="sidebar-item">
+                        <span class="label">AI Review</span>
+                        <span class="value" style="color:#10b981;">Instant</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="label">Expert Review</span>
+                        <span class="value" style="color:#f59e0b;">24-48 hrs</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===== AI PROGRESS MODAL ===== -->
+    <div class="modal-overlay" id="aiProgressModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeAIModal">✕</button>
+            <h3>Analyzing Your Pitch Deck</h3>
+            <p>AI is reviewing your startup pitch deck</p>
+            <div class="modal-progress">
+                <div class="step-text" id="aiStepText">Uploading document...</div>
+                <div class="step-sub" id="aiStepSub">Preparing your pitch deck</div>
+                <div class="bar">
+                    <div class="fill" id="aiProgressFill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== IMPROVE WITH AI MODAL ===== -->
+    <div class="modal-overlay" id="improveModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeImproveModal">✕</button>
+            <h3>Improve with AI</h3>
+            <p>Choose what you want AI to improve in your pitch deck.</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:12px 0;">
+                <button class="btn-secondary improve-option" style="padding:10px; font-size:0.85rem;">Storytelling</button>
+                <button class="btn-secondary improve-option" style="padding:10px; font-size:0.85rem;">Financials</button>
+                <button class="btn-secondary improve-option" style="padding:10px; font-size:0.85rem;">Business Model</button>
+                <button class="btn-secondary improve-option" style="padding:10px; font-size:0.85rem;">Design</button>
+                <button class="btn-secondary improve-option" style="padding:10px; font-size:0.85rem;">Market Fit</button>
+                <button class="btn-primary improve-option" style="padding:10px; font-size:0.85rem;">Generate New Deck</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BOOK SESSION MODAL ===== -->
+    <div class="modal-overlay" id="bookSessionModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeBookModal">✕</button>
+            <h3>📅 Book Expert Session</h3>
+            <p>Schedule a live consultation with your selected expert reviewer.</p>
+
+            <div style="margin:14px 0;">
+                <label style="font-weight:500; font-size:0.85rem; display:block; margin-bottom:4px;">Select Consultant</label>
+                <select class="form-control" id="bookConsultantSelect">
+                    <option value="Amanda Kaur — Sequoia Capital">Amanda Kaur — Sequoia Capital</option>
+                    <option value="Michael Rodriguez — Ex-Y Combinator" selected>Michael Rodriguez — Ex-Y Combinator</option>
+                    <option value="Sarah Williams — Angel Investor">Sarah Williams — Angel Investor</option>
+                    <option value="David Chen — 500 Global">David Chen — 500 Global</option>
+                </select>
+            </div>
+
+            <div style="margin:14px 0;">
+                <label style="font-weight:500; font-size:0.85rem; display:block; margin-bottom:4px;">Select Date</label>
+                <select class="form-control" id="bookDateSelect">
+                    <option value="Tomorrow, July 15">Tomorrow, July 15</option>
+                    <option value="Wednesday, July 16">Wednesday, July 16</option>
+                    <option value="Thursday, July 17">Thursday, July 17</option>
+                    <option value="Friday, July 18">Friday, July 18</option>
+                    <option value="Monday, July 21">Monday, July 21</option>
+                </select>
+            </div>
+
+            <div style="margin:14px 0;">
+                <label style="font-weight:500; font-size:0.85rem; display:block; margin-bottom:4px;">Select Time Slot</label>
+                <select class="form-control" id="bookTimeSelect">
+                    <option value="9:00 AM EST">9:00 AM EST</option>
+                    <option value="10:00 AM EST">10:00 AM EST</option>
+                    <option value="11:00 AM EST">11:00 AM EST</option>
+                    <option value="1:00 PM EST">1:00 PM EST</option>
+                    <option value="2:00 PM EST">2:00 PM EST</option>
+                    <option value="3:00 PM EST">3:00 PM EST</option>
+                    <option value="4:00 PM EST" selected>4:00 PM EST</option>
+                </select>
+            </div>
+
+            <div style="margin:14px 0;">
+                <label style="font-weight:500; font-size:0.85rem; display:block; margin-bottom:4px;">Session Focus</label>
+                <select class="form-control" id="bookFocusSelect">
+                    <option value="General Review">General Review</option>
+                    <option value="Storytelling Improvement">Storytelling Improvement</option>
+                    <option value="Financial Model Review">Financial Model Review</option>
+                    <option value="Market Strategy">Market Strategy</option>
+                    <option value="Fundraising Preparation" selected>Fundraising Preparation</option>
+                </select>
+            </div>
+
+            <input type="hidden" id="bookingSource" value="ai" />
+
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelBookBtn">Cancel</button>
+                <button class="btn-primary" id="confirmBookBtn">Confirm Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ============================================================
+        // TOAST
+        // ============================================================
+        let toastTimer;
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const uploadCard = document.getElementById('uploadCard');
+        const fileInput = document.getElementById('fileInput');
+        const browseBtn = document.getElementById('browseBtn');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const filePreview = document.getElementById('filePreview');
+        const fileName = document.getElementById('fileName');
+        const fileSize = document.getElementById('fileSize');
+        const removeFileBtn = document.getElementById('removeFile');
+
+        const sectionReviewCards = document.getElementById('sectionReviewCards');
+        const sectionAIReport = document.getElementById('sectionAIReport');
+        const sectionConsultants = document.getElementById('sectionConsultants');
+        const sectionExpertStatus = document.getElementById('sectionExpertStatus');
+
+        let selectedFile = null;
+        let selectedConsultant = null;
+        let expertReviewComplete = false;
+
+        // ============================================================
+        // SECTION NAVIGATION
+        // ============================================================
+        function showSection(sectionId) {
+            sectionReviewCards.classList.add('section-hidden');
+            sectionAIReport.classList.add('section-hidden');
+            sectionConsultants.classList.add('section-hidden');
+            sectionExpertStatus.classList.add('section-hidden');
+            document.getElementById(sectionId).classList.remove('section-hidden');
+        }
+
+        // ============================================================
+        // FILE UPLOAD
+        // ============================================================
+        browseBtn.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        uploadCard.addEventListener('click', function(e) {
+            if (e.target.closest('.upload-actions') || e.target.closest('.file-preview')) return;
+            if (e.target.closest('.upload-formats')) return;
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                selectedFile = this.files[0];
+                fileName.textContent = selectedFile.name;
+                fileSize.textContent = (selectedFile.size / 1024 / 1024).toFixed(1) + ' MB';
+                filePreview.classList.add('show');
+                showToast('File selected: ' + selectedFile.name);
+                updateWorkflow(1);
+                updateAIStatus(1);
+            }
+        });
+
+        removeFileBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            selectedFile = null;
+            fileInput.value = '';
+            filePreview.classList.remove('show');
+            showToast('File removed');
+            updateWorkflow(1);
+            updateAIStatus(0);
+        });
+
+        uploadCard.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('dragover');
+        });
+
+        uploadCard.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+        });
+
+        uploadCard.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                selectedFile = e.dataTransfer.files[0];
+                fileName.textContent = selectedFile.name;
+                fileSize.textContent = (selectedFile.size / 1024 / 1024).toFixed(1) + ' MB';
+                filePreview.classList.add('show');
+                showToast('File uploaded: ' + selectedFile.name);
+                updateWorkflow(1);
+                updateAIStatus(1);
+            }
+        });
+
+        // ============================================================
+        // BACK BUTTONS
+        // ============================================================
+        document.getElementById('backFromReport').addEventListener('click', function() {
+            showSection('sectionReviewCards');
+            updateWorkflow(3);
+        });
+
+        document.getElementById('backFromConsultants').addEventListener('click', function() {
+            showSection('sectionReviewCards');
+            updateWorkflow(3);
+        });
+
+        document.getElementById('backFromExpertStatus').addEventListener('click', function() {
+            showSection('sectionConsultants');
+        });
+
+        // ============================================================
+        // WORKFLOW
+        // ============================================================
+        function updateWorkflow(step) {
+            const steps = document.querySelectorAll('#workflow .workflow-step');
+            steps.forEach((s, i) => {
+                s.classList.remove('active', 'completed');
+                if (i + 1 < step) {
+                    s.classList.add('completed');
+                } else if (i + 1 === step) {
+                    s.classList.add('active');
+                }
+            });
+        }
+
+        // ============================================================
+        // EXPERT STATUS (sidebar)
+        // ============================================================
+        function updateExpertStatus(step, consultantName) {
+            const dots = [
+                document.getElementById('sidebarExpertDot1'),
+                document.getElementById('sidebarExpertDot2'),
+                document.getElementById('sidebarExpertDot3'),
+                document.getElementById('sidebarExpertDot4')
+            ];
+            const labels = [
+                document.getElementById('sidebarExpertLabel1'),
+                document.getElementById('sidebarExpertLabel2'),
+                document.getElementById('sidebarExpertLabel3'),
+                document.getElementById('sidebarExpertLabel4')
+            ];
+
+            dots.forEach((dot, i) => {
+                dot.className = 'dot';
+                labels[i].className = 'label';
+                if (i + 1 < step) {
+                    dot.classList.add('completed');
+                    labels[i].classList.add('completed');
+                } else if (i + 1 === step) {
+                    dot.classList.add('active');
+                    labels[i].classList.add('active');
+                }
+            });
+
+            const infoEl = document.getElementById('sidebarExpertInfo');
+            if (step === 4) {
+                infoEl.textContent = '✅ Report ready for download!';
+                expertReviewComplete = true;
+            } else if (consultantName) {
+                infoEl.textContent = 'Review with ' + consultantName + ' in progress...';
+            } else {
+                infoEl.textContent = 'No active expert review';
+            }
+
+            if (consultantName) {
+                document.getElementById('expertConsultantInfo').style.display = 'block';
+                document.getElementById('expertConsultantName').textContent = consultantName;
+            }
+        }
+
+        // ============================================================
+        // AI STATUS (sidebar)
+        // ============================================================
+        function updateAIStatus(step, message) {
+            const dots = [
+                document.getElementById('sidebarAIDot1'),
+                document.getElementById('sidebarAIDot2'),
+                document.getElementById('sidebarAIDot3'),
+                document.getElementById('sidebarAIDot4')
+            ];
+            const labels = [
+                document.getElementById('sidebarAILabel1'),
+                document.getElementById('sidebarAILabel2'),
+                document.getElementById('sidebarAILabel3'),
+                document.getElementById('sidebarAILabel4')
+            ];
+
+            dots.forEach((dot, i) => {
+                dot.className = 'dot';
+                labels[i].className = 'label';
+                if (i + 1 < step) {
+                    dot.classList.add('completed');
+                    labels[i].classList.add('completed');
+                } else if (i + 1 === step) {
+                    dot.classList.add('active');
+                    labels[i].classList.add('active');
+                }
+            });
+
+            const infoEl = document.getElementById('sidebarAIInfo');
+            if (step === 0) {
+                infoEl.textContent = 'Waiting for file upload';
+            } else if (step === 1) {
+                infoEl.textContent = 'File queued for analysis';
+            } else if (step === 2) {
+                infoEl.textContent = 'Processing your pitch deck...';
+            } else if (step === 3) {
+                infoEl.textContent = 'Analysis complete. Generating report...';
+            } else if (step === 4) {
+                infoEl.textContent = '✅ Report ready for download!';
+            }
+            if (message) infoEl.textContent = message;
+        }
+
+        // ============================================================
+        // SHOW BOOKED SESSION - AI Review
+        // ============================================================
+        function showBookedSessionAI(consultant, date, time, focus) {
+            const details = document.getElementById('bookedSessionDetailsAI');
+            details.style.display = 'block';
+            document.getElementById('sessionConsultantAI').textContent = consultant;
+            document.getElementById('sessionDateAI').textContent = date;
+            document.getElementById('sessionTimeAI').textContent = time;
+            document.getElementById('sessionFocusAI').textContent = focus;
+        }
+
+        // ============================================================
+        // SHOW BOOKED SESSION - Expert Review
+        // ============================================================
+        function showBookedSessionExpert(consultant, date, time, focus) {
+            const details = document.getElementById('bookedSessionDetailsExpert');
+            details.style.display = 'block';
+            document.getElementById('sessionConsultantExpert').textContent = consultant;
+            document.getElementById('sessionDateExpert').textContent = date;
+            document.getElementById('sessionTimeExpert').textContent = time;
+            document.getElementById('sessionFocusExpert').textContent = focus;
+        }
+
+        // ============================================================
+        // AI REVIEW
+        // ============================================================
+        document.getElementById('startAIReview').addEventListener('click', function() {
+            if (!selectedFile) {
+                showToast('Please upload a pitch deck first.');
+                return;
+            }
+            updateWorkflow(2);
+            updateAIStatus(2);
+            startAIAnalysis();
+        });
+
+        function startAIAnalysis() {
+            const modal = document.getElementById('aiProgressModal');
+            const fill = document.getElementById('aiProgressFill');
+            const stepText = document.getElementById('aiStepText');
+            const stepSub = document.getElementById('aiStepSub');
+
+            modal.classList.add('active');
+            updateAIStatus(2);
+
+            const stages = [
+                { text: 'Uploading document...', sub: 'Preparing your pitch deck', progress: 15, status: 2 },
+                { text: 'Reading slides...', sub: 'Extracting content from your deck', progress: 30, status: 2 },
+                { text: 'Extracting startup information...', sub: 'Understanding your business', progress: 45, status: 2 },
+                { text: 'Analyzing market...', sub: 'Evaluating market opportunity', progress: 60, status: 3 },
+                { text: 'Evaluating financials...', sub: 'Reviewing financial projections', progress: 75, status: 3 },
+                { text: 'Checking fundraising readiness...', sub: 'Assessing investor readiness', progress: 90, status: 3 },
+                { text: 'Generating report...', sub: 'Preparing comprehensive analysis', progress: 100, status: 4 }
+            ];
+
+            let index = 0;
+            let currentProgress = 0;
+
+            const interval = setInterval(() => {
+                if (index < stages.length) {
+                    const stage = stages[index];
+                    stepText.textContent = stage.text;
+                    stepSub.textContent = stage.sub;
+                    if (stage.status === 3) updateAIStatus(3);
+                    if (stage.status === 4) updateAIStatus(4);
+
+                    const target = stage.progress;
+                    const step = (target - currentProgress) / 12;
+
+                    const progressInterval = setInterval(() => {
+                        currentProgress = Math.min(currentProgress + step, target);
+                        fill.style.width = currentProgress + '%';
+
+                        if (currentProgress >= target) {
+                            clearInterval(progressInterval);
+                            if (index === stages.length - 1) {
+                                clearInterval(interval);
+                                setTimeout(() => {
+                                    modal.classList.remove('active');
+                                    showAIReport();
+                                    updateWorkflow(4);
+                                    updateAIStatus(4);
+                                }, 800);
+                            }
+                        }
+                    }, 30);
+
+                    index++;
+                }
+            }, 1200);
+        }
+
+        function showAIReport() {
+            showSection('sectionAIReport');
+
+            const scores = {
+                aiOverall: 86,
+                aiStorytelling: 82,
+                aiMarketFit: 79,
+                aiBusinessModel: 74,
+                aiDesign: 88,
+                aiFundraising: 81
+            };
+
+            Object.keys(scores).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    let current = 0;
+                    const target = scores[id];
+                    const interval = setInterval(() => {
+                        current++;
+                        if (current <= target) {
+                            el.textContent = current;
+                            const bar = el.closest('.summary-item')?.querySelector('.fill');
+                            if (bar) bar.style.width = current + '%';
+                        }
+                        if (current >= target) clearInterval(interval);
+                    }, 20);
+                }
+            });
+
+            showToast('Analysis complete! Your report is ready.');
+            updateWorkflow(4);
+            updateAIStatus(4);
+        }
+
+        // ============================================================
+        // AI REPORT ACTIONS
+        // ============================================================
+        document.getElementById('improveWithAI').addEventListener('click', function() {
+            document.getElementById('improveModal').classList.add('active');
+        });
+
+        document.getElementById('closeImproveModal').addEventListener('click', function() {
+            document.getElementById('improveModal').classList.remove('active');
+        });
+
+        document.querySelectorAll('.improve-option').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.getElementById('improveModal').classList.remove('active');
+                showToast('AI is improving your ' + this.textContent + '...');
+                setTimeout(() => {
+                    showToast('Improvement complete!');
+                }, 2000);
+            });
+        });
+
+        // Book from AI Review
+        document.getElementById('bookExpertFromAI').addEventListener('click', function() {
+            document.getElementById('bookingSource').value = 'ai';
+            document.getElementById('bookSessionModal').classList.add('active');
+        });
+
+        // ============================================================
+        // BOOK SESSION MODAL
+        // ============================================================
+        document.getElementById('closeBookModal').addEventListener('click', function() {
+            document.getElementById('bookSessionModal').classList.remove('active');
+        });
+
+        document.getElementById('cancelBookBtn').addEventListener('click', function() {
+            document.getElementById('bookSessionModal').classList.remove('active');
+        });
+
+        document.getElementById('confirmBookBtn').addEventListener('click', function() {
+            const consultant = document.getElementById('bookConsultantSelect');
+            const date = document.getElementById('bookDateSelect');
+            const time = document.getElementById('bookTimeSelect');
+            const focus = document.getElementById('bookFocusSelect');
+            const source = document.getElementById('bookingSource').value;
+
+            const consultantName = consultant.options[consultant.selectedIndex].text;
+            const dateVal = date.options[date.selectedIndex].text;
+            const timeVal = time.options[time.selectedIndex].text;
+            const focusVal = focus.options[focus.selectedIndex].text;
+
+            document.getElementById('bookSessionModal').classList.remove('active');
+
+            if (source === 'ai') {
+                // Show session in AI Review section
+                showBookedSessionAI(consultantName, dateVal, timeVal, focusVal);
+                // Update AI status in sidebar
+                document.getElementById('sidebarAIInfo').textContent = '📅 Booked: ' + consultantName + ' · ' + dateVal +
+                    ' ' + timeVal;
+                showToast('✅ Session booked with ' + consultantName + ' on ' + dateVal + ' at ' + timeVal + ' (AI Review)');
+            } else {
+                // Show session in Expert Review section
+                showBookedSessionExpert(consultantName, dateVal, timeVal, focusVal);
+                // Update Expert status in sidebar
+                document.getElementById('sidebarExpertInfo').textContent = '📅 Booked: ' + consultantName + ' · ' + dateVal +
+                    ' ' + timeVal;
+                showToast('✅ Session booked with ' + consultantName + ' on ' + dateVal + ' at ' + timeVal +
+                    ' (Expert Review)');
+            }
+        });
+
+        document.getElementById('bookSessionModal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+
+        // ============================================================
+        // SESSION ACTIONS - AI Review
+        // ============================================================
+        document.getElementById('joinSessionBtnAI').addEventListener('click', function() {
+            showToast('🎥 Joining AI review session... Opening video call...');
+        });
+
+        document.getElementById('rescheduleSessionBtnAI').addEventListener('click', function() {
+            document.getElementById('bookingSource').value = 'ai';
+            document.getElementById('bookSessionModal').classList.add('active');
+        });
+
+        document.getElementById('cancelSessionBtnAI').addEventListener('click', function() {
+            if (confirm('Are you sure you want to cancel this session?')) {
+                document.getElementById('bookedSessionDetailsAI').style.display = 'none';
+                document.getElementById('sidebarAIInfo').textContent = 'Session cancelled';
+                showToast('Session cancelled successfully.');
+            }
+        });
+
+        // ============================================================
+        // SESSION ACTIONS - Expert Review
+        // ============================================================
+        document.getElementById('joinSessionBtnExpert').addEventListener('click', function() {
+            showToast('🎥 Joining expert review session... Opening video call...');
+        });
+
+        document.getElementById('rescheduleSessionBtnExpert').addEventListener('click', function() {
+            document.getElementById('bookingSource').value = 'expert';
+            document.getElementById('bookSessionModal').classList.add('active');
+        });
+
+        document.getElementById('cancelSessionBtnExpert').addEventListener('click', function() {
+            if (confirm('Are you sure you want to cancel this session?')) {
+                document.getElementById('bookedSessionDetailsExpert').style.display = 'none';
+                document.getElementById('sidebarExpertInfo').textContent = 'Session cancelled';
+                showToast('Session cancelled successfully.');
+            }
+        });
+
+        // ============================================================
+        // EXPERT REVIEW
+        // ============================================================
+        document.getElementById('startExpertReview').addEventListener('click', function() {
+            if (!selectedFile) {
+                showToast('Please upload a pitch deck first.');
+                return;
+            }
+            showSection('sectionConsultants');
+            updateWorkflow(3);
+        });
+
+        // ============================================================
+        // CONSULTANT SELECTION
+        // ============================================================
+        document.querySelectorAll('.select-consultant').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const item = this.closest('.consultant-item');
+                const name = item.querySelector('.consultant-name').textContent;
+                selectedConsultant = name;
+
+                showSection('sectionExpertStatus');
+
+                showToast('Request sent to ' + name);
+
+                const statusSteps = document.querySelectorAll('#statusWorkflow .workflow-step');
+                statusSteps.forEach((s, i) => {
+                    s.classList.remove('active', 'completed');
+                    if (i === 0) s.classList.add('active');
+                });
+
+                const statusMessage = document.getElementById('statusMessage');
+                const viewReportBtn = document.getElementById('viewExpertReport');
+                const bookSessionBtn = document.getElementById('bookSessionFromStatusBtn');
+                viewReportBtn.style.display = 'none';
+                bookSessionBtn.style.display = 'none';
+
+                updateExpertStatus(1, name);
+
+                let step = 1;
+                const statusInterval = setInterval(() => {
+                    if (step < statusSteps.length) {
+                        statusSteps[step - 1].classList.remove('active');
+                        statusSteps[step - 1].classList.add('completed');
+                        statusSteps[step].classList.add('active');
+
+                        const messages = [
+                            'Consultant has been notified. Awaiting acceptance...',
+                            'Consultant accepted. Review in progress...',
+                            'Review complete. Preparing your report...'
+                        ];
+                        statusMessage.textContent = messages[step - 1] || 'Processing...';
+
+                        updateExpertStatus(step + 1, name);
+
+                        step++;
+                    } else {
+                        clearInterval(statusInterval);
+                        statusMessage.textContent = 'Report ready!';
+                        viewReportBtn.style.display = 'inline-block';
+                        bookSessionBtn.style.display = 'inline-block';
+                        document.getElementById('bookSessionFromStatusBtn').style.display = 'inline-block';
+                        showToast('Expert review complete!');
+                        updateWorkflow(4);
+                        updateExpertStatus(4, name);
+                        expertReviewComplete = true;
+                    }
+                }, 2500);
+            });
+        });
+
+        document.querySelectorAll('.consultant-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const btn = this.querySelector('.select-consultant');
+                if (btn) btn.click();
+            });
+        });
+
+        // ============================================================
+        // VIEW EXPERT REPORT
+        // ============================================================
+        document.getElementById('viewExpertReport').addEventListener('click', function() {
+            showSection('sectionAIReport');
+
+            const reportTitle = document.querySelector('#sectionAIReport h3');
+            if (reportTitle) reportTitle.textContent = 'Expert Review Report';
+
+            const badge = document.querySelector('#sectionAIReport .badge');
+            if (badge) {
+                badge.textContent = 'Expert Review';
+                badge.className = 'badge badge-gold';
+            }
+
+            showToast('Expert review report ready!');
+        });
+
+        // ============================================================
+        // BOOK SESSION FROM STATUS (Expert)
+        // ============================================================
+        document.getElementById('bookSessionFromStatusBtn').addEventListener('click', function() {
+            document.getElementById('bookingSource').value = 'expert';
+            document.getElementById('bookSessionModal').classList.add('active');
+        });
+
+        // ============================================================
+        // MODAL CLOSE
+        // ============================================================
+        document.getElementById('closeAIModal').addEventListener('click', function() {
+            document.getElementById('aiProgressModal').classList.remove('active');
+        });
+
+        document.getElementById('aiProgressModal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+
+        document.getElementById('improveModal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
+
+        // ============================================================
+        // KEYBOARD
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+            }
+            if (e.key === 'Enter' && selectedFile) {
+                document.getElementById('uploadBtn').click();
+            }
+        });
+
+        // ============================================================
+        // UPLOAD BUTTON
+        // ============================================================
+        uploadBtn.addEventListener('click', function() {
+            if (!selectedFile) {
+                showToast('Please select a file first.');
+                return;
+            }
+            startAIAnalysis();
+        });
+
+        // ============================================================
+        // DOWNLOAD REPORT
+        // ============================================================
+        document.getElementById('downloadReportBtn').addEventListener('click', function() {
+            showToast('Downloading report...');
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        showToast('Upload your pitch deck to get started.');
+        updateWorkflow(1);
+        updateExpertStatus(1, null);
+        updateAIStatus(0);
+    </script>
+
+</body>
+</html>
