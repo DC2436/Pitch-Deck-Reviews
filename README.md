@@ -115,6 +115,19 @@ As a Product Management Intern at PitchSap, I contributed by:
 
 ---
 
+## Prototype Screenshots
+
+The repository includes the following prototype screens:
+
+1. Landing Page & Pitch Deck Upload
+2. AI Review vs Expert Review Selection
+3. AI Analysis Processing
+4. AI Review Report
+5. Book Expert Session
+6. Expert Consultant Selection
+7. Expert Review Status Tracking
+8. Complete End-to-End Review Workflow
+
 ## Tools Used
 
 - ChatGPT
